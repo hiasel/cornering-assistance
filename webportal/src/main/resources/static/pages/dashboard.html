@@ -1,0 +1,64 @@
+<div class="row">
+    <!-- Top Row -->
+    <div class="col-md-6">
+        <!-- Parameters -->
+        <h3><span class="glyphicon glyphicon-align-left"></span> Parameters</h3>
+        <div class="input-group">
+            <span class="input-group-addon" id="max_radius">Maximum Radius (meters)</span>
+            <input type="number" class="form-control" ng-model="dc.params.radiusThreshold">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon" id="min_length">Minimum Length (meters)</span>
+            <input type="number" class="form-control" ng-model="dc.params.lengthThreshold">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon" id="precision">Geo Hash Precision (chars)</span>
+            <input type="number" min="2" max="12" class="form-control" ng-model="dc.params.geoHashPrecision" ng-change="dc.calcGeoHash()">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon" id="bb_height">Bounding Box Height (meters)</span>
+            <input type="number" class="form-control" ng-model="dc.bbHeight" disabled>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon" id="bb_width">Bounding Box Width (meters)</span>
+            <input type="number" class="form-control" ng-model="dc.bbWidth" disabled>
+        </div>
+
+        <button type="button" class="btn btn-primary" ng-click="dc.saveParams()">Save Params</button>
+    </div>
+    <div class="col-md-6">
+        <!-- Rules -->
+        <h3><span class="glyphicon glyphicon-book"></span> Rules</h3>
+        <div class="input-group">
+            <span class="input-group-addon" id="warn_before_meters">Warn Before Curve (meters)</span>
+            <input type="number" class="form-control" ng-model="dc.rules.warnBeforeCurveMeters">
+        </div>
+        <h5>Dangerous Curve</h5>
+        <rzslider
+                rz-slider-model="dc.slider_dangerous.min"
+                rz-slider-high="dc.slider_dangerous.max"
+                rz-slider-options="dc.slider_dangerous.options"></rzslider>
+
+        <h5>Medium Curve</h5>
+        <rzslider
+                rz-slider-model="dc.slider_medium.min"
+                rz-slider-high="dc.slider_medium.max"
+                rz-slider-options="dc.slider_medium.options"></rzslider>
+
+        <h5>Easy Curve</h5>
+        <rzslider
+                rz-slider-model="dc.slider_easy.min"
+                rz-slider-high="dc.slider_easy.max"
+                rz-slider-options="dc.slider_easy.options"></rzslider>
+        <button type="button" class="btn btn-primary" ng-click="dc.saveRules()">Save Rules</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <!-- Map -->
+        <h3><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Curve Map</h3>
+        <button type="button" class="btn btn-primary" ng-click="dc.getCurves()">Refresh</button>
+        <leaflet layers="dc.layers" markers= "dc.markers" paths="dc.paths" lf-center="dc.center" height="480px" width="910px"></leaflet>
+
+    </div>
+</div>

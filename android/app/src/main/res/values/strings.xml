@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Cornering Assistance App</string>
+    <string name="title_activity_maps">Cornering Assistant</string>
+    <string name="default_info_title">Default Location</string>
+</resources>
